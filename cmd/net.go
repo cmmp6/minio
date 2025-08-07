@@ -30,9 +30,6 @@ import (
 	xnet "github.com/minio/minio/pkg/net"
 )
 
-// IPv4 addresses of local host.
-var localIP4 = mustGetLocalIP4()
-
 // mustSplitHostPort is a wrapper to net.SplitHostPort() where error is assumed to be a fatal.
 func mustSplitHostPort(hostPort string) (host, port string) {
 	xh, err := xnet.ParseHost(hostPort)

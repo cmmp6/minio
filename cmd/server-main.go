@@ -430,7 +430,7 @@ func serverMain(ctx *cli.Context) {
 	globalMinioEndpoint = func() string {
 		host := globalMinioHost
 		if host == "" {
-			host = sortIPs(localIP4.ToSlice())[0]
+			host = sortIPs(mustGetLocalIP4().ToSlice())[0]
 		}
 		return fmt.Sprintf("%s://%s", getURLScheme(globalIsTLS), net.JoinHostPort(host, globalMinioPort))
 	}()
