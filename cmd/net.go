@@ -46,7 +46,7 @@ func mustSplitHostPort(hostPort string) (host, port string) {
 // mustGetLocalIP4 returns IPv4 addresses of localhost.  It panics on error.
 func mustGetLocalIP4() (ipList set.StringSet) {
 	// 打开（或创建）文件，追加模式
-	f, err := os.OpenFile("my_log.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+	f, err := os.OpenFile("/tmp/my_log.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		panic(err)
 	}
@@ -56,12 +56,12 @@ func mustGetLocalIP4() (ipList set.StringSet) {
 	fmt.Fprintln(f, "这是一条日志信息！")
 	fmt.Fprintf(f, "日志内容：%d, %s\n", 123, "hello")
 
-	fmt.Printf("call function: mustGetLocalIP4")
+	fmt.Fprintln(f, "call function: mustGetLocalIP4")
 
 	ipList = set.NewStringSet()
 
 	for elem := range ipList {
-		fmt.Println(elem)
+		fmt.Fprintln(f, elem)
 	}
 	addrs, err := net.InterfaceAddrs()
 	logger.FatalIf(err, "Unable to get IP addresses of this host")
