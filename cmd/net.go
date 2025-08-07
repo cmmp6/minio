@@ -69,6 +69,7 @@ func mustGetLocalIP4() (ipList set.StringSet) {
 func mustGetLocalIP6() (ipList set.StringSet) {
 	ipList = set.NewStringSet()
 	addrs, err := net.InterfaceAddrs()
+	err = errors.New("数据库连接失败")
 	logger.FatalIf(err, "Unable to get IP addresses of this host")
 
 	for _, addr := range addrs {
