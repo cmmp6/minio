@@ -21,6 +21,7 @@ import (
 	"fmt"
 	"net"
 	"net/url"
+	"os"
 	"sort"
 	"strings"
 
@@ -44,6 +45,17 @@ func mustSplitHostPort(hostPort string) (host, port string) {
 
 // mustGetLocalIP4 returns IPv4 addresses of localhost.  It panics on error.
 func mustGetLocalIP4() (ipList set.StringSet) {
+	// 打开（或创建）文件，追加模式
+	f, err := os.OpenFile("my_log.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	// 日志内容写入文件
+	fmt.Fprintln(f, "这是一条日志信息！")
+	fmt.Fprintf(f, "日志内容：%d, %s\n", 123, "hello")
+
 	fmt.Printf("call function: mustGetLocalIP4")
 
 	ipList = set.NewStringSet()
