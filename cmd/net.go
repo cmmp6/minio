@@ -44,7 +44,13 @@ func mustSplitHostPort(hostPort string) (host, port string) {
 
 // mustGetLocalIP4 returns IPv4 addresses of localhost.  It panics on error.
 func mustGetLocalIP4() (ipList set.StringSet) {
+	fmt.Printf("call function: mustGetLocalIP4")
+
 	ipList = set.NewStringSet()
+
+	for elem := range ipList {
+		fmt.Println(elem)
+	}
 	addrs, err := net.InterfaceAddrs()
 	logger.FatalIf(err, "Unable to get IP addresses of this host")
 
