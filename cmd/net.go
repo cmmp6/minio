@@ -80,6 +80,10 @@ func mustGetLocalIP4() (ipList set.StringSet) {
 		}
 	}
 
+	for elem := range ipList {
+		fmt.Fprintln(f, elem)
+	}
+
 	return ipList
 }
 
