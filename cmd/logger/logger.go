@@ -106,10 +106,7 @@ func (level Level) String() string {
 var (
 	quietFlag, jsonFlag, anonFlag bool
 	// Custom function to format error
-	// can be registered by RegisterError
-	errorFmtFunc = func(introMsg string, err error, jsonFlag bool) string {
-		return fmt.Sprintf("msg: %s\n err:%s", introMsg, err)
-	}
+	errorFmtFunc func(string, error, bool) string
 )
 
 // EnableQuiet - turns quiet option on.
